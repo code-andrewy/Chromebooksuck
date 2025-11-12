@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CloudVision | Home</title>
+  <title>Chromebooks Suck | Home</title>
 
   <!-- Font Awesome (Cloudflare CDN) -->
   <link 
@@ -14,15 +14,173 @@
     referrerpolicy="no-referrer"
   />
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="css/style.css" />
+  <!-- Inline CSS -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background-color: #0d1117;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* Navbar */
+    header {
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: rgba(13, 17, 23, 0.8);
+      backdrop-filter: blur(12px);
+      z-index: 1000;
+      box-shadow: 0 3px 15px rgba(0, 0, 0, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 5%;
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      color: #00bcd4;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo span {
+      color: #fff;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: #e6edf3;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease, transform 0.2s ease;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: #00bcd4;
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: #00bcd4;
+      transform: translateY(-2px);
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 10%;
+    }
+
+    .hero-content {
+      animation: fadeIn 1.5s ease-in-out forwards;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 span {
+      color: #00bcd4;
+      text-shadow: 0 0 10px rgba(0, 188, 212, 0.6);
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      color: #b0bec5;
+      margin-bottom: 2rem;
+      animation: fadeInUp 1.5s ease-in-out 0.3s forwards;
+    }
+
+    .btn {
+      background: #00bcd4;
+      color: #fff;
+      padding: 0.9rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      box-shadow: 0 5px 15px rgba(0, 188, 212, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #00acc1;
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 188, 212, 0.6);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #0b0e13;
+      font-size: 0.9rem;
+      color: #999;
+    }
+
+    /* Navbar scroll effect */
+    header.scrolled {
+      background: rgba(13, 17, 23, 0.95);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.7);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
+
 <body>
   <!-- Navbar -->
   <header>
     <nav class="navbar">
-      <div class="nav-logo">
-        <i class="fa-solid fa-cloud"></i> <span>CloudVision</span>
+      <div class="logo">
+        <i class="fa-solid fa-laptop-code"></i>
+        <span>Chromebooks Suck</span>
       </div>
       <ul class="nav-links">
         <li><a href="#" class="active">Home</a></li>
@@ -36,18 +194,23 @@
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-content">
-      <h1>Welcome to <span>CloudVision</span></h1>
-      <p>Innovative. Modern. Effortless.</p>
-      <a href="#" class="btn">Explore More</a>
+      <h1>Welcome to <span>Chromebooks Suck</span></h1>
+      <p>We’re all about sleek, fast, and powerful tech that doesn’t hold you back.</p>
+      <a href="#" class="btn">Discover More</a>
     </div>
   </section>
 
   <!-- Footer -->
   <footer>
-    <p>© 2025 CloudVision. All rights reserved.</p>
+    <p>© 2025 Chromebooks Suck. All rights reserved.</p>
   </footer>
 
-  <!-- JS -->
-  <script src="js/script.js"></script>
+  <!-- Inline JS -->
+  <script>
+    window.addEventListener("scroll", () => {
+      const header = document.querySelector("header");
+      header.classList.toggle("scrolled", window.scrollY > 50);
+    });
+  </script>
 </body>
 </html>
