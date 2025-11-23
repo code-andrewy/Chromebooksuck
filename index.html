@@ -28,7 +28,7 @@ header {
 .logo i { color: #fff; }
 .logo span { color:#00bcd4; }
 
-/* Nav links with rounded box for current */
+/* Nav links */
 .nav-links { list-style:none; display:flex; gap:1rem; }
 .nav-links li a {
   color:#e6edf3; text-decoration:none; font-weight:500;
@@ -76,34 +76,29 @@ header.scrolled { background: rgba(13,17,23,1); box-shadow:0 2px 20px rgba(0,0,0
 
 <header>
   <nav class="navbar">
-    <div class="logo"><i class="fa-solid fa-laptop"></i> <span> [Name not choosen] </span></div>
+    <div class="logo"><i class="fa-solid fa-laptop"></i> <span> MyGitHubSite </span></div>
     <ul class="nav-links">
-      <li><a href="#" id="nav-home" class="active" onclick="openIframe('https://example.com', 'nav-home')"><i class="fa-solid fa-house"></i> Home</a></li>
-      <li><a href="#" id="nav-about" onclick="openIframe('https://example.com/about', 'nav-about')"><i class="fa-solid fa-users"></i> Who We Are</a></li>
-      <li><a href="#" id="nav-projects" onclick="openIframe('https://example.com/projects', 'nav-projects')"><i class="fa-solid fa-folder-open"></i> Projects</a></li>
-      <li><a href="#" id="nav-contact" onclick="openIframe('https://example.com/contact', 'nav-contact')"><i class="fa-solid fa-envelope"></i> Contact</a></li>
+      <li><a href="#" id="nav-home" class="active" onclick="loadGitHubHTML('https://raw.githubusercontent.com/code-andrewy/homepage/refs/heads/main/index.html', 'nav-home')"><i class="fa-solid fa-house"></i> Home</a></li>
+      <li><a href="#" id="nav-about" onclick="loadGitHubHTML('https://raw.githubusercontent.com/YourUsername/AboutRepo/main/index.html', 'nav-about')"><i class="fa-solid fa-users"></i> Who We Are</a></li>
+      <li><a href="#" id="nav-projects" onclick="loadGitHubHTML('https://raw.githubusercontent.com/YourUsername/ProjectsRepo/main/index.html', 'nav-projects')"><i class="fa-solid fa-folder-open"></i> Projects</a></li>
+      <li><a href="#" id="nav-contact" onclick="loadGitHubHTML('https://raw.githubusercontent.com/YourUsername/ContactRepo/main/index.html', 'nav-contact')"><i class="fa-solid fa-envelope"></i> Contact</a></li>
+
       <li><a href="https://popcornhub.pages.dev" target="_blank"><i class="fa-solid fa-film"></i> Movies & TV Shows</a></li>
-<li>
-  <a href="https://popcornhub.pages.dev" target="_blank">
-    <i class="fa-solid fa-music"></i> Music
-  </a>
-</li>
+      <li><a href="https://popcornhub.pages.dev" target="_blank"><i class="fa-solid fa-music"></i> Music</a></li>
     </ul>
   </nav>
 </header>
 
 <section class="hero" id="home-hero">
   <div class="hero-content">
-    <h1>Welcome to <span> (Name not chosen) </span></h1>
-    <p>Slogon would go here maybe or short description</p>
-    <a href="#" class="btn" onclick="openIframe('https://example.com', 'nav-home')"><i class="fa-solid fa-arrow-right"></i> Discover More</a>
-    <a href="#" class="btn"><i class="fa-solid fa-download"></i> Download</a>
-    <a href="#" class="btn"><i class="fa-solid fa-play"></i> Watch Video</a>
+    <h1>Welcome to <span> MyGitHubSite </span></h1>
+    <p>Slogan or short description goes here</p>
+    <a href="#" class="btn" onclick="loadGitHubHTML('https://raw.githubusercontent.com/YourUsername/HomeRepo/main/index.html', 'nav-home')"><i class="fa-solid fa-arrow-right"></i> Discover More</a>
   </div>
 </section>
 
 <div id="iframe-container" style="display:none;">
-  <iframe id="embed-frame" src=""></iframe>
+  <iframe id="embed-frame"></iframe>
 </div>
 
 <footer>
@@ -116,23 +111,35 @@ const iframe = document.getElementById("embed-frame");
 const homeHero = document.getElementById("home-hero");
 const navLinks = document.querySelectorAll('.nav-links li a');
 
-// Open iframe and highlight current nav
-function openIframe(url, navId) {
-  iframe.src = url;
-  iframeContainer.style.display = "block";
-  homeHero.style.display = "none";
+// Function to fetch and render raw GitHub HTML
+async function loadGitHubHTML(url, navId) {
+  try {
+    const response = await fetch(url);
+    if(!response.ok) throw new Error('Failed to fetch GitHub HTML');
+    const html = await response.text();
 
-  // Remove active from all
-  navLinks.forEach(link => link.classList.remove('active'));
-  // Add active to current
-  if(navId) document.getElementById(navId).classList.add('active');
+    // Render HTML inside iframe using a data URL
+    const blob = new Blob([html], {type: 'text/html'});
+    const blobURL = URL.createObjectURL(blob);
+    iframe.src = blobURL;
 
-  window.scrollTo(0,0);
+    iframeContainer.style.display = "block";
+    homeHero.style.display = "none";
+
+    // Update active link
+    navLinks.forEach(link => link.classList.remove('active'));
+    if(navId) document.getElementById(navId).classList.add('active');
+
+    window.scrollTo(0,0);
+  } catch(err) {
+    console.error(err);
+    alert('Could not load the page from GitHub.');
+  }
 }
 
 // Load home page automatically on first visit
 window.addEventListener('load', () => {
-  openIframe('https://example.com', 'nav-home');
+  loadGitHubHTML('https://raw.githubusercontent.com/YourUsername/HomeRepo/main/index.html', 'nav-home');
 });
 
 // Scroll header effect
