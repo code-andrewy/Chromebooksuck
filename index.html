@@ -76,9 +76,9 @@ header.scrolled { background: rgba(13,17,23,1); box-shadow:0 2px 20px rgba(0,0,0
 
 <header>
   <nav class="navbar">
-    <div class="logo"><i class="fa-solid fa-laptop"></i> <span> MyGitHubSite </span></div>
+    <div class="logo"><i class="fa-solid fa-laptop"></i> <span> Chromebookssuck</span></div>
     <ul class="nav-links">
-      <li><a href="#" id="nav-home" class="active" onclick="loadGitHubHTML('https://raw.githubusercontent.com/code-andrewy/homepage/refs/heads/main/index.html', 'nav-home')"><i class="fa-solid fa-house"></i> Home</a></li>
+      <li><a href="#" id="nav-home" class="active" onclick="loadGitHubHTML('https://raw.githubusercontent.com/code-andrewy/homepage/main/index.html', 'nav-home')"><i class="fa-solid fa-house"></i> Home</a></li>
       <li><a href="#" id="nav-about" onclick="loadGitHubHTML('https://raw.githubusercontent.com/YourUsername/AboutRepo/main/index.html', 'nav-about')"><i class="fa-solid fa-users"></i> Who We Are</a></li>
       <li><a href="#" id="nav-projects" onclick="loadGitHubHTML('https://raw.githubusercontent.com/YourUsername/ProjectsRepo/main/index.html', 'nav-projects')"><i class="fa-solid fa-folder-open"></i> Projects</a></li>
       <li><a href="#" id="nav-contact" onclick="loadGitHubHTML('https://raw.githubusercontent.com/YourUsername/ContactRepo/main/index.html', 'nav-contact')"><i class="fa-solid fa-envelope"></i> Contact</a></li>
@@ -91,9 +91,9 @@ header.scrolled { background: rgba(13,17,23,1); box-shadow:0 2px 20px rgba(0,0,0
 
 <section class="hero" id="home-hero">
   <div class="hero-content">
-    <h1>Welcome to <span> MyGitHubSite </span></h1>
-    <p>Slogan or short description goes here</p>
-    <a href="#" class="btn" onclick="loadGitHubHTML('https://raw.githubusercontent.com/YourUsername/HomeRepo/main/index.html', 'nav-home')"><i class="fa-solid fa-arrow-right"></i> Discover More</a>
+    <h1><span> Loading..</span></h1>
+    <p>Chromebookssuck</p>
+    <a href="#" class="btn" onclick="loadGitHubHTML('https://raw.githubusercontent.com/code-andrewy/homepage/main/index.html', 'nav-home')"><i class="fa-solid fa-arrow-right"></i> Discover More</a>
   </div>
 </section>
 
@@ -137,9 +137,9 @@ async function loadGitHubHTML(url, navId) {
   }
 }
 
-// Load home page automatically on first visit
+// Load your GitHub home page automatically on first visit
 window.addEventListener('load', () => {
-  loadGitHubHTML('https://raw.githubusercontent.com/YourUsername/HomeRepo/main/index.html', 'nav-home');
+  loadGitHubHTML('https://raw.githubusercontent.com/code-andrewy/homepage/main/index.html', 'nav-home');
 });
 
 // Scroll header effect
